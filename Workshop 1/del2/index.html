@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="amount">Lånets Summa</input><br>
+        <input type="text" v-model="intrest">Ränta</input><br>
+        <input type="text" v-model="time">Lånetid</input><br>
+        <button @click="counter">Run</button>
+        <p v-if="result">{{ result }}</p>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue;
+        const app = createApp({
+            data() {
+                return {
+                     amount:0,
+                     intrest:0,
+                     time:0,
+                     result:0,
+                }
+            },
+            methods : {
+                counter(){
+                    this.result = (this.amount * this.intrest * this.time) / 100;
+                    console.log(this.result)
+                    this.amount = 0;
+                    this.intrest = 0;
+                    this.time = 0;
+                }
+            }
+        }).mount("#app");
+    </script>
+
+
+</body>
+</html>

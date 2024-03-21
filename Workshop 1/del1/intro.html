@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop 1</title>
+</head>
+<body>
+    <div id="app">
+        <label for="textInput">Enter text:</label>
+        <input type="text" id="textInput" v-model="inputText"><br>
+        <button type="button" @click="addTodo">Save</button>
+        <ul v-if="toDoArray.length">
+            <li v-for="(toDo, index) in toDoArray" :key="index">
+                {{ toDo }}
+                <button @click="removeTodo(index)">Delete</button>
+            </li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp } = Vue;
+        const app = createApp({
+            data() {
+                return {
+                    inputText: '',
+                    toDoArray: [], 
+                }
+            },
+            methods: {
+                addTodo() {
+                    this.toDoArray.push(this.inputText);
+                    this.inputText = '';
+                },
+                removeTodo(index) {
+                    this.toDoArray.splice(index, 1);
+                }
+            },
+        }).mount("#app");
+    </script>
+</body>
+</html>
